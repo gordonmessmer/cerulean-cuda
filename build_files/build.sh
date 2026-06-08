@@ -18,10 +18,5 @@ set -ouex pipefail
 
 dnf config-manager addrepo --from-repofile=https://developer.download.nvidia.com/compute/cuda/repos/fedora44/x86_64/cuda-fedora44.repo
 
-rpm -ivh https://codeberg.org/gordonmessmer/nvidia-open-kmod/releases/download/610.43.02-1/kmod-nvidia-open-610.43.02-1.fc44.x86_64.rpm https://codeberg.org/gordonmessmer/nvidia-open-kmod/releases/download/610.43.02-1/nvidia-open-kmod-610.43.02-1.fc44.x86_64.rpm
+dnf -y install nvidia-open https://codeberg.org/gordonmessmer/nvidia-open-kmod/releases/download/610.43.02-1/kmod-nvidia-open-610.43.02-1.fc44.x86_64.rpm https://codeberg.org/gordonmessmer/nvidia-open-kmod/releases/download/610.43.02-1/nvidia-open-kmod-610.43.02-1.fc44.x86_64.rpm
 
-dnf5 -y install nvidia-open
-
-#### Example for enabling a System Unit File
-
-systemctl enable podman.socket
