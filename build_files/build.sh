@@ -17,10 +17,10 @@ set -ouex pipefail
 # dnf5 -y copr disable ublue-os/staging
 
 dnf config-manager addrepo --from-repofile=https://developer.download.nvidia.com/compute/cuda/repos/fedora44/x86_64/cuda-fedora44.repo
+dnf config-manager addrepo --from-repofile=https://resistor-build-yum-prod.s3.us-west-2.amazonaws.com/project-resistor-kernel.repo
 
-dnf -y install nvidia-open https://codeberg.org/gordonmessmer/nvidia-open-kmod/releases/download/610.43.02-4/kmod-nvidia-open-610.43.02-1.fc44.x86_64.rpm https://codeberg.org/gordonmessmer/nvidia-open-kmod/releases/download/610.43.02-4/nvidia-open-kmod-610.43.02-1.fc44.x86_64.rpm
+dnf -y install nvidia-open
 
 # nvidia kmod package includes bad post scripts. redo depmod here until they are fixed.
 verrel=$(rpm -q kernel --qf '%{VERSION}-%{RELEASE}.%{ARCH}')
-dotvariant=""
-/usr/sbin/depmod -aeF "/lib/modules/${verrel}${dotvariant}/System.map" "${verrel}${dotvariant}"
+/usr/sbin/depmod -aeF "/lib/modules/${verrel}/System.map" "${verrel}"
